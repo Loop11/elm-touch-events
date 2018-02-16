@@ -28,7 +28,7 @@ unwanted multitouch interactions,
 you might want to use the `MultiTouch` module which provides
 finer grained control over the processing of the touch event.
 
-@docs onStart, onMove, onEnd, onCancel, coordinates
+@docs onStart, onMove, onEnd, onCancel, coordinates, downs, moves, ups
 
 -}
 
@@ -80,21 +80,21 @@ coordinates =
         |> Decode.map .coordinates
 
 
-{-| Triggered on a "touchstart" event.
+{-| Subscribe to a "touchstart" event anywhere on the screen.
 -}
 downs : (Touch.Coordinates -> msg) -> Sub msg
 downs tag =
     subscription (MySub "touchstart" tag)
 
 
-{-| Triggered on a "touchmove" event.
+{-| Subscribe to a "touchmove" event anywhere on the screen.
 -}
 moves : (Touch.Coordinates -> msg) -> Sub msg
 moves tag =
     subscription (MySub "touchmove" tag)
 
 
-{-| Triggered on a "touchend" event.
+{-| Subscribe to a "touchend" event anywhere on the screen.
 -}
 ups : (Touch.Coordinates -> msg) -> Sub msg
 ups tag =
